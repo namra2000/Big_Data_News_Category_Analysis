@@ -4,6 +4,7 @@ Large-scale Natural Language Processing (NLP) analysis on news articles using Py
 ## 📈 Project Overview
 
 This project performs large-scale Natural Language Processing (NLP) analysis on news articles using PySpark, HuggingFace Transformers, BERTopic, LDA, and spaCy.
+https://www.kaggle.com/datasets/rmisra/news-category-dataset 
 
 **Main Tasks:**
 
