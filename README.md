@@ -1,91 +1,84 @@
-# Big_Data_News_Category_Analysis
-Large-scale Natural Language Processing (NLP) analysis on news articles using PySpark, HuggingFace Transformers, BERTopic, LDA, and spaCy.
+# 📘 Big Data NLP Project
 
-## 📈 Project Overview
+## 📌 Project Title
 
-This project performs large-scale Natural Language Processing (NLP) analysis on news articles using PySpark, HuggingFace Transformers, BERTopic, LDA, and spaCy.
-https://www.kaggle.com/datasets/rmisra/news-category-dataset 
+**Analyzing Public Sentiment and Emerging Topics from Large-Scale News Articles using NLP and Big Data Tools**
 
-**Main Tasks:**
+## 👥 Group Members
 
-* Sentiment Analysis with DistilBERT and BERT
-* Topic Modeling using LDA and BERTopic
-* Named Entity Recognition (NER) using spaCy
-* Visualization of Sentiments, Topics, and NER
+* Namra (23k-7301)
+* Yusra Khan Baloch (23k-8046)
 
-## 💡 Features Implemented
+## 🧠 Objectives
 
-### 1. Sentiment Analysis
+1. Perform sentiment analysis using transformer-based models (DistilBERT and BERT).
+2. Conduct topic modeling using LDA and BERTopic.
+3. Extract entities using spaCy for Named Entity Recognition (NER).
+4. Visualize trends with word clouds, bar charts, and heatmaps.
+5. Compare outputs from different models for validation and accuracy.
 
-* Uses `distilbert-base-uncased-finetuned-sst-2-english` and `nlptown/bert-base-multilingual-uncased-sentiment`
-* Compares outputs and calculates agreement/accuracy
-* Visualized via bar charts and agreement charts
+## 🛠️ Tools & Libraries Used
 
-### 2. Text Preprocessing
+* Python 3.10.11
+* PySpark 3.5.4
+* pandas 2.2.1
+* matplotlib 3.8.4
+* seaborn 0.12.2
+* scikit-learn 1.4.2
+* wordcloud 1.9.3
+* spaCy 3.7.4
+* en\_core\_web\_sm (spaCy model)
+* transformers 4.40.0
+* torch 2.3.0
+* bertopic 0.16.0
 
-* Cleaned and normalized text (lowercased, links/punctuation removed)
-* Used spaCy for:
+## 📂 Data Source
 
-  * Tokenization
-  * Stopword removal
-  * Lemmatization
+* [News Category Dataset (Kaggle)](https://www.kaggle.com/rmisra/news-category-dataset)
+* Fields: `headline`, `short_description`, `category`, `link`, `date`
 
-### 3. Topic Modeling
+## 🚀 Project Workflow
 
-* **LDA** via `sklearn`
-* **BERTopic** via `bertopic`
-* Outputs compared via bar charts and topic overlap heatmap
+1. Start Spark session and load JSON data from HDFS.
+2. Preprocess text: lowercase, punctuation removal, stopword removal, lemmatization.
+3. Apply transformer models to perform sentiment classification.
+4. Plot sentiment distribution and agreement metrics.
+5. Use CountVectorizer + LDA for basic topic modeling.
+6. Apply BERTopic for advanced topic extraction.
+7. Visualize LDA vs BERTopic comparison and topic overlap heatmap.
+8. Run Named Entity Recognition (NER) on preprocessed content.
+9. Save all outputs and graphs in `outputs/` folder.
 
-### 4. NER (Named Entity Recognition)
+## 📊 Output Visuals
 
-* Used `spaCy`'s pre-trained `en_core_web_sm` model
-* Top entity types extracted and visualized
+* distilbert\_sentiment\_distribution.png
+* bert\_sentiment\_distribution.png
+* sentiment\_agreement.png
+* short\_description\_wordcloud.png
+* lda\_topic\_X\_wordcloud.png (X = topic number)
+* bertopic\_topic\_distribution.png
+* topic\_doc\_counts\_side\_by\_side.png
+* topic\_overlap\_heatmap.png
+* ner\_entity\_distribution.png
 
-## 📊 Output Files
+## 🏁 Running the Code
 
-All outputs are saved under the `outputs/` directory:
+Make sure the following are set:
 
-* `distilbert_sentiment_distribution.png`
-* `bert_sentiment_distribution.png`
-* `sentiment_agreement.png`
-* `short_description_wordcloud.png`
-* `lda_topic_X_wordcloud.png`
-* `bertopic_topic_distribution.png`
-* `topic_doc_counts_side_by_side.png`
-* `topic_overlap_heatmap.png`
-* `ner_entity_distribution.png`
-
-## 🚀 Running the Project
-
-### Requirements
+* HDFS path is active and JSON file is accessible
+* All libraries installed as per versions listed
+* Spark installed and added to PATH
 
 ```bash
-pip install pyspark pandas matplotlib seaborn scikit-learn spacy wordcloud transformers bertopic
-python -m spacy download en_core_web_sm
-```
-
-### Execution
-
-Make sure Hadoop and Spark are running, then:
-
-```bash
+# Sample run command
 python data.py
 ```
 
-Ensure your HDFS path matches the dataset path:
+## 🔍 Notes
 
-```py
-hdfs://localhost:9000/project/News_Category_Dataset_v3.json
-```
+* Only 500–2000 records are processed to avoid memory issues.
+* Agreement between sentiment models used as proxy for accuracy.
 
-## 🔗 Contributors
+## 📧 Contact
 
-* Namra Ahmer (23k-7301)
-* Yusra Khan Baloch (23k-8046)
-
-## ✅ Notes
-
-* Sampling is used (`limit(500)` and `[:2000]`) to avoid memory issues
-* Agreement-based accuracy is used since ground truth labels are absent
-
-Let us know if you want to add model benchmarking, export results as CSV, or deploy this as a web interface.
+For any queries, reach out to Namra or Yusra via university email.
